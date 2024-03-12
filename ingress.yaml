@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: doingresslb2
+  namespace: sock-shop
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: www.elohorg.com
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: front-end
+                port:
+                  number: 80
+            path: /
+tls:
+  - hosts:
+    - www.elohorg.com
+    secretName: capstone-tls
